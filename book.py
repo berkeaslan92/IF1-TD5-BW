@@ -1,5 +1,6 @@
 from enum import Enum
 from functools import total_ordering
+import numpy as np
 
 class Side(Enum):
     SELL = 0
@@ -7,6 +8,7 @@ class Side(Enum):
 
 @total_ordering
 class Order:
+
     def __init__(self, quantity, price, side):
         self.quantity = quantity
         self.price = price
@@ -25,4 +27,14 @@ class Order:
     def __repr__(self):
         return "Order(%s, &s)" % (self.quantity, self.price)
 
+class Book:
 
+	def __init__ (self, name):
+		self.name = name
+		self.book = np.array()
+
+	def insert_order(self,Order):
+		self.book.np.append(Order)
+
+	def arange_book():
+		np.sort(self.book, order = [Order.price,Order.priority])	
