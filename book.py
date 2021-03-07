@@ -1,10 +1,6 @@
 from enum import Enum
 from functools import total_ordering
-import numpy as np
-<<<<<<< HEAD
 from operator import itemgetter, attrgetter
-=======
->>>>>>> 1cb10518b9bde54b88c7cafeed81c8061ac81176
 
 class Side(Enum):
     SELL = 0
@@ -13,11 +9,8 @@ class Side(Enum):
 @total_ordering
 class Order:
 
-<<<<<<< HEAD
     prio = 0
 
-=======
->>>>>>> 1cb10518b9bde54b88c7cafeed81c8061ac81176
     def __init__(self, quantity, price, side):
         self.quantity = quantity
         self.price = price
@@ -79,7 +72,6 @@ class Book:
       self.transaction_execution()
     self.print_order()
 
-<<<<<<< HEAD
   def insert_buy(self, quantity, price):
     self.book.append(Order(quantity, price, 1))
     print(f"INSERT BUY ORDER: {self.book[-1]}")
@@ -93,16 +85,3 @@ class Book:
     for i in self.book:
       print(i)
     print("\n")
-=======
-class Book:
-
-	def __init__ (self, name):
-		self.name = name
-		self.book = np.array()
-
-	def insert_order(self,Order):
-		self.book.np.append(Order)
-
-	def arange_book():
-		np.sort(self.book, order = [Order.price,Order.priority])	
->>>>>>> 1cb10518b9bde54b88c7cafeed81c8061ac81176
