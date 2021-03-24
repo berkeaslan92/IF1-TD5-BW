@@ -1,6 +1,8 @@
 from enum import Enum
 from functools import total_ordering
+import numpy as np
 from operator import itemgetter, attrgetter
+import pandas as pd
 
 class Side(Enum):
     SELL = 0
@@ -32,6 +34,7 @@ class Book:
   def __init__ (self, name):
     self.name = name
     self.book = []
+    
 
   def transaction_execution(self):
     # while self.book
@@ -39,7 +42,7 @@ class Book:
     # comparer les quantités pour index 1 et index n, si condition => remove l'ordre
 
     while self.book[0].price <= self.book[-1].price:
-
+      
       number_of_orders_in_book = len(self.book)
       best_buy = self.book[number_of_orders_in_book-1]
       best_sell = self.book[0]
@@ -63,7 +66,7 @@ class Book:
         print(f"Transaction executed : {best_buy.quantity} at {best_buy.price}")
         best_sell.quantity = best_sell.quantity - best_buy.quantity
         self.book.remove(best_buy)
-
+  
   def insert_sell(self, quantity, price):
     self.book.append(Order(quantity, price, 0))
     print(f"INSERT SELL ORDER: {self.book[-1]}")
@@ -85,3 +88,23 @@ class Book:
     for i in self.book:
       print(i)
     print("\n")
+
+  def tabular_print(self):
+    df = pd.DataFrame({
+    'quantity':[],
+    'side':[],
+    'price':[],
+    'priority':[]})
+
+    number_of_orders_in_book = len(self.book)
+
+    for i in range(number_of_orders_in_book):
+      quantity = self.book[i].quantity
+      side = self.book[i].side
+      price = self.book[i].price
+      priority = self.book[i].priority
+
+      df = df.append({'quantity':quantity, 'side':side, 'price':price, 'priority':priority}, ignore_index=True)
+      
+    print("0: BUY SIDE and 1: SELL SIDE")
+    print(df)
